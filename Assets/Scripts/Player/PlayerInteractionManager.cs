@@ -2,20 +2,13 @@ using UnityEngine;
 
 public class PlayerInteractionManager : MonoBehaviour
 {
-    [Header("General Settings")]
+    [Header("References")]
     [SerializeField] private Transform mainCamera;
     [SerializeField] private InputManager input;
 
     [Header("Interaction Settings")]
     [SerializeField] private float detectableDistance = 2f;
     [SerializeField] private InteractableBase[] interactables;
-
-    private bool _interactableInRange = false;
-
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {
