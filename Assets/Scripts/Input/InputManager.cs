@@ -4,10 +4,8 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     [Header("Mouse Cursor Settings")]
-    [SerializeField]
-    private bool cursorVisible = true;
-    [SerializeField]
-    private CursorLockMode lockMode = CursorLockMode.Locked;
+    [SerializeField] private bool cursorVisible = true;
+    [SerializeField] private CursorLockMode lockMode = CursorLockMode.Locked;
 
     public Vector2 Move { get; private set; }
     public Vector2 Look { get; private set; }
