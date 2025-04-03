@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
 
     [Header("Camera")]
+    [SerializeField] private Transform mainCamera;
     [SerializeField] private float cameraSensitivity = 0.5f;
     [SerializeField] private float minPitchAngle = -60f;
     [SerializeField] private float maxPitchAngle = 60f;
@@ -34,13 +35,34 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 moveDirection = new(_input.Move.x, 0f, _input.Move.y);
+        Vector3 forward = mainCamera.forward;
+        Vector3 right = mainCamera.right;
 
-        _controller.Move(moveSpeed * Time.deltaTime * moveDirection);
+        forward.y = right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 inputDirection = new Vector3(_input.Move.x, 0f, _input.Move.y).normalized;
+
+        Vector3 targetDirection = Vector3.zero;
+
+        if (_input.Move != Vector2.zero)
+        {
+            targetDirection = (forward * inputDirection.z) + (right * inputDirection.x);
+
+            Vector3 targetRotation = (forward * Mathf.Abs(inputDirection.z)) + (forward * Mathf.Abs(inputDirection.x));
+
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                    Quaternion.LookRotation(targetRotation), 1f);
+        }
+
+        _controller.Move(moveSpeed * Time.deltaTime * targetDirection.normalized);
     }
 
     private void RotateCamera()
     {
+        // Check if there's mouse movement
         if (_input.Look.sqrMagnitude > float.Epsilon)
         {
             _cameraRotation += _input.Look * cameraSensitivity;
@@ -52,6 +74,7 @@ public class PlayerController : MonoBehaviour
         // Pitch
         _cameraRotation.y = Mathf.Clamp(_cameraRotation.y, minPitchAngle, maxPitchAngle);
 
+        // Set Camera's rotation
         cameraTarget.rotation = Quaternion.Euler(-_cameraRotation.y, _cameraRotation.x, 0f);
     }
 }

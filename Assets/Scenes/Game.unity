@@ -485,7 +485,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  mainCamera: {fileID: 330585546}
   cameraSensitivity: 0.4
+  minPitchAngle: -60
+  maxPitchAngle: 60
   cameraTarget: {fileID: 1824246872}
 --- !u!114 &435253230
 MonoBehaviour:
@@ -650,7 +653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478636556}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.6, y: 1.5, z: -1.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
