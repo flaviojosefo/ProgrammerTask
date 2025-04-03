@@ -10,7 +10,7 @@ This project aims to showcase my skills as a Unity Developer.
 |:-----------------------|:--------------------:|
 | Character Movement     |  :heavy_check_mark:  |
 | Character Animations   |  :heavy_check_mark:  |
-| Character Interactions |          :x:         |
+| Character Interactions |  :heavy_check_mark:  |
 
 ### 2. Inventory Management
 
