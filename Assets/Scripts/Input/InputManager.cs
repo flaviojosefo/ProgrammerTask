@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
 
     public Vector2 Move { get; private set; }
     public Vector2 Look { get; private set; }
+    public bool Interact { get; set; }
 
     private void Start()
     {
@@ -24,5 +25,10 @@ public class InputManager : MonoBehaviour
     public void OnLook(InputValue value)
     {
         Look = value.Get<Vector2>();
+    }
+
+    public void OnInteract(InputValue value)
+    {
+        Interact = value.isPressed;
     }
 }
