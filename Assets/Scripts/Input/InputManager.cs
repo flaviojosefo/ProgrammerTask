@@ -4,19 +4,25 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     [Header("Mouse Cursor Settings")]
-    [SerializeField] private bool cursorVisible = true;
+    [SerializeField] private bool cursorVisible = false;
     [SerializeField] private CursorLockMode lockMode = CursorLockMode.Locked;
 
     public Vector2 Move { get; private set; }
     public Vector2 Look { get; private set; }
     public bool Interact { get; set; }
     public bool OpenInventory { get; set; }
+    public bool PauseGame { get; set; }
 
     private void Start()
     {
         // Set desired initial cursor visibility and state
-        Cursor.visible = cursorVisible;
-        Cursor.lockState = lockMode;
+        ShowCursor(cursorVisible);
+    }
+
+    public void ShowCursor(bool show)
+    {
+        Cursor.visible = show;
+        Cursor.lockState = show ? CursorLockMode.None : lockMode;
     }
 
     public void OnMove(InputValue value)
@@ -37,5 +43,10 @@ public class InputManager : MonoBehaviour
     public void OnInventory(InputValue value)
     {
         OpenInventory = value.isPressed;
+    }
+
+    public void OnPause(InputValue value)
+    {
+        PauseGame = value.isPressed; 
     }
 }

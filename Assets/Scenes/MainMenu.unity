@@ -888,6 +888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1015015921}
+  - component: {fileID: 1015015922}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -910,6 +911,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1015015922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015015920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbbcd1c0729bed428bbf969d9f4024e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1339225389
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +979,7 @@ GameObject:
   - component: {fileID: 1473977931}
   - component: {fileID: 1473977930}
   - component: {fileID: 1473977929}
+  - component: {fileID: 1473977932}
   m_Layer: 5
   m_Name: LoadButton
   m_TagString: Untagged
@@ -1032,7 +1046,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1473977930}
   m_OnClick:
     m_PersistentCalls:
@@ -1087,6 +1101,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473977927}
   m_CullTransparentMesh: 1
+--- !u!114 &1473977932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473977927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118bba13a70e7bf45ab71411f3c6fdc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveManager: {fileID: 1015015922}
 --- !u!1 &1521144418
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,13 +33,14 @@ public class PlayerInventory : MonoBehaviour
         OpenInventory();
     }
 
+    // Opens and closes the inventory
     private void OpenInventory()
     {
         if (input.OpenInventory)
         {
             playerController.enabled = _inventoryOpen;
             inventoryMenu.gameObject.SetActive(!_inventoryOpen);
-            ShowCursor(!_inventoryOpen);
+            input.ShowCursor(!_inventoryOpen);
 
             _inventoryOpen = !_inventoryOpen;
 
@@ -49,6 +50,15 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    // Force closes the main inventory components
+    public void ForceCloseInventory()
+    {
+        inventoryMenu.gameObject.SetActive(false);
+        _inventoryOpen = false;
+        optionsMenu.SetActive(false);
+    }
+
+    // Tries to add an item to the inventory
     public bool TryAddItem(string name, Sprite sprite)
     {
         for (int i = 0; i < slots.Length; i++)
@@ -57,11 +67,14 @@ public class PlayerInventory : MonoBehaviour
             GameObject icon = slots[i].GetChild(0).gameObject;
             Transform tooltip = slots[i].GetChild(1);
 
+            // Detect if icon is deactivated
             if (!icon.activeSelf)
             {
+                // If an icon is found 'empty', assign a sprite and activate it
                 icon.GetComponent<Image>().sprite = sprite;
                 icon.SetActive(true);
 
+                // Set the item's name in its tooltip
                 tooltip.GetChild(0).GetComponent<TMP_Text>().text = name;
 
                 return true;
@@ -89,13 +102,16 @@ public class PlayerInventory : MonoBehaviour
 
     public void MoveItem(int toIndex)
     {
+        // Prevent moving the item to its own position
         if (SwapperIndex == toIndex)
             return;
 
+        // Fetch the moving item's icon and tooltip
         GameObject fromIcon = slots[SwapperIndex].GetChild(0).gameObject;
-        GameObject toIcon = slots[toIndex].GetChild(0).gameObject;
-
         Transform fromTooltip = slots[SwapperIndex].GetChild(1);
+
+        // Fetch the new position's icon and tooltip
+        GameObject toIcon = slots[toIndex].GetChild(0).gameObject;
         Transform toTooltip = slots[toIndex].GetChild(1);
 
         // Moving to empty slot
@@ -143,18 +159,15 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    private void ShowCursor(bool value)
-    {
-        Cursor.visible = value;
-        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
+        // Check if the collider belongs to an Item
         if (other.CompareTag("Item"))
         {
+            // Get its ItemBase component
             ItemBase item = other.GetComponent<ItemBase>();
 
+            // Try to add the item to the inventory
             if (TryAddItem(item.Name, item.Icon))
             {
                 other.GetComponent<ItemBase>().PickUp();
