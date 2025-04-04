@@ -22,8 +22,10 @@ public class PlayerInventory : MonoBehaviour
 
     private bool _inventoryOpen = false;
 
-    private int _usedBatteries;
-    private int _usedMagnets;
+    public Transform[] Slots => slots;
+
+    public int UsedBatteries { get; private set; }
+    public int UsedMagnets { get; private set; }
 
     public bool StartedDragMove { get; set; } = false;
     public int SwapperIndex { get; set; } = -1;
@@ -149,13 +151,13 @@ public class PlayerInventory : MonoBehaviour
         // Increase displayed value
         if (isBattery)
         {
-            _usedBatteries++;
-            batteries.text = $"{_usedBatteries}";
+            UsedBatteries++;
+            batteries.text = $"{UsedBatteries}";
         }
         else
         {
-            _usedMagnets++;
-            magnets.text = $"{_usedMagnets}";
+            UsedMagnets++;
+            magnets.text = $"{UsedMagnets}";
         }
     }
 

@@ -55,7 +55,8 @@ public class SlotInteractionHandler : MonoBehaviour, IPointerEnterHandler, IPoin
             Button useButton = optionsMenu.transform.GetChild(0).GetChild(0).GetComponent<Button>();
             Button removeButton = optionsMenu.transform.GetChild(0).GetChild(1).GetComponent<Button>();
 
-            // Check if the slot contains a battery; Hacky way, but works
+            // Check if the slot contains a battery
+            // Hacky, but works
             bool isBattery = _toolTip.transform.GetComponentInChildren<TMP_Text>().text == "Battery";
 
             // Replace Use and Remove buttons' methods

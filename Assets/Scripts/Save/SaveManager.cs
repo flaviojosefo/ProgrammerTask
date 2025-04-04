@@ -51,7 +51,7 @@ public class SaveManager : MonoBehaviour
         return Directory.Exists(_saveDirectory) && File.Exists(_saveFile);
     }
 
-    public void Save()
+    public void Save(PlayerData data)
     {
         // Check if save directory exists
         if (!Directory.Exists(_saveDirectory))
@@ -60,18 +60,8 @@ public class SaveManager : MonoBehaviour
             Directory.CreateDirectory(_saveDirectory);
         }
 
-        // Prepare main data to be saved
-        PlayerData playerData = new()
-        {
-            batteriesUsed = 1,
-            magnetsUsed = 1,
-            playerPosition = Vector3.zero,
-            playerRotation = Quaternion.identity,
-            itemSlots = null
-        };
-
         // Save data as JSON
-        string json = JsonUtility.ToJson(playerData, true);
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(_saveFile, json);
 
         // Debug
