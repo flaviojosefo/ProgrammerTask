@@ -34,7 +34,7 @@ This project aims to showcase my skills as a Unity Developer.
 
 | Feature                       |        Status        |
 |:------------------------------|:--------------------:|
-| Save Inventory State          |          :x:         |
+| Save Inventory State          |  :heavy_check_mark:  |
 | Load Inventory State          |          :x:         |
 | Ensure Slot-based Persistence |          :x:         |
 
