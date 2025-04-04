@@ -21,7 +21,7 @@ This project aims to showcase my skills as a Unity Developer.
 | Move Items           |          :x:         |
 | Drag & Swap Items    |          :x:         |
 | Use/Equip Items      |          :x:         |
-| Slot-based Structure |          :x:         |
+| Slot-based Structure |  :heavy_check_mark:  |
 
 ### 3. UI Design
 
