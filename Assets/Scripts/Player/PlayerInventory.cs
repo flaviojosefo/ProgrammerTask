@@ -46,6 +46,29 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void AddItem(string name)
+    {
+        for (int i = 0; i < slotsAmount; i++)
+        {
+            // select the first available slot
+        }
+    }
+
+    public void RemoveItem()
+    {
+
+    }
+
+    public void MoveItem()
+    {
+
+    }
+
+    public void UseItem()
+    {
+
+    }
+
     private void ShowCursor(bool value)
     {
         Cursor.visible = value;
