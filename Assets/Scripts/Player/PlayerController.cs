@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour
                     Quaternion.LookRotation(targetRotation), 0.9f);
         }
 
+        // Add small "gravity" force
+        targetDirection += Vector3.down;
+
         // Move the player
         _controller.Move(moveSpeed * Time.deltaTime * targetDirection.normalized);
 
