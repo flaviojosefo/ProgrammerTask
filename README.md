@@ -27,7 +27,7 @@ This project aims to showcase my skills as a Unity Developer.
 
 | Feature                  |        Status        |
 |:-------------------------|:--------------------:|
-| Display Item Details     |          :x:         |
+| Display Item Details     |  :heavy_check_mark:  |
 | Dynamic & Captivating UI |          :x:         |
 
 ### 4. Save and Load System
