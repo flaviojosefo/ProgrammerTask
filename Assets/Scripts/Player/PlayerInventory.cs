@@ -16,7 +16,14 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private Transform[] slots;
     [SerializeField] private GameObject optionsMenu;
 
+    [Header("Incremental UI")]
+    [SerializeField] private TMP_Text batteries;
+    [SerializeField] private TMP_Text magnets;
+
     private bool _inventoryOpen = false;
+
+    private int _usedBatteries;
+    private int _usedMagnets;
 
     private void Start()
     {
@@ -87,11 +94,19 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
-    public void UseItem(int index)
+    public void UseItem(bool isBattery)
     {
-        print("USED Item" + index);
-
-        // Do something + RemoveItem(index)!
+        // Increase displayed value
+        if (isBattery)
+        {
+            _usedBatteries++;
+            batteries.text = $"{_usedBatteries}";
+        }
+        else
+        {
+            _usedMagnets++;
+            magnets.text = $"{_usedMagnets}";
+        }
     }
 
     private void ShowCursor(bool value)

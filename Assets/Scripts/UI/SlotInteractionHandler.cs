@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -46,8 +47,12 @@ public class SlotInteractionHandler : MonoBehaviour, IPointerEnterHandler, IPoin
 
                 int index = transform.GetSiblingIndex();
 
+                // Hacky way, but works
+                bool isBattery = _toolTip.transform.GetComponentInChildren<TMP_Text>().text == "Battery";
+
                 useButton.onClick.RemoveAllListeners();
-                useButton.onClick.AddListener(() => inventory.UseItem(index));
+                useButton.onClick.AddListener(() => inventory.UseItem(isBattery));
+                useButton.onClick.AddListener(() => inventory.RemoveItem(index)); // Remove item after using
 
                 removeButton.onClick.RemoveAllListeners();
                 removeButton.onClick.AddListener(() => inventory.RemoveItem(index));
