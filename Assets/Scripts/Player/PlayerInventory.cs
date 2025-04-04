@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,13 +44,16 @@ public class PlayerInventory : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            // Fetch the slot's icon
+            // Fetch the slot's icon & tooltip
             GameObject icon = slots[i].GetChild(0).gameObject;
+            Transform tooltip = slots[i].GetChild(1);
 
             if (!icon.activeSelf)
             {
                 icon.GetComponent<Image>().sprite = sprite;
                 icon.SetActive(true);
+
+                tooltip.GetChild(0).GetComponent<TMP_Text>().text = name;
 
                 return true;
             }
@@ -85,7 +89,7 @@ public class PlayerInventory : MonoBehaviour
         {
             ItemBase item = other.GetComponent<ItemBase>();
 
-            if (TryAddItem("", item.Icon))
+            if (TryAddItem(item.Name, item.Icon))
             {
                 other.GetComponent<ItemBase>().PickUp();
             }

@@ -149,4 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db5b6604f98dbb48a11777179d1f1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Battery
   icon: {fileID: 21300000, guid: 18319f389f9624f40a78158aa777026c, type: 3}
