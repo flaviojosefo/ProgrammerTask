@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -10,26 +11,18 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private PlayerController playerController;
 
     [Header("Slots Settings")]
-    [SerializeField] private int slotsAmount = 40;
+    [SerializeField] private Transform[] slots;
 
     private bool _inventoryOpen = false;
 
     private void Start()
     {
-        GenerateSlots();
+        
     }
 
     private void Update()
     {
         OpenInventory();
-    }
-
-    private void GenerateSlots()
-    {
-        for (int i = 0; i < slotsAmount; i++)
-        {
-            Instantiate(slotPrefab, slotsParent);
-        }
     }
 
     private void OpenInventory()
@@ -46,12 +39,23 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void AddItem(string name)
+    public bool TryAddItem(string name, Sprite sprite)
     {
-        for (int i = 0; i < slotsAmount; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
-            // select the first available slot
+            // Fetch the slot's icon
+            GameObject icon = slots[i].GetChild(0).gameObject;
+
+            if (!icon.activeSelf)
+            {
+                icon.GetComponent<Image>().sprite = sprite;
+                icon.SetActive(true);
+
+                return true;
+            }
         }
+
+        return false;
     }
 
     public void RemoveItem()
@@ -79,7 +83,12 @@ public class PlayerInventory : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            other.GetComponent<ItemBase>().PickUp();
+            ItemBase item = other.GetComponent<ItemBase>();
+
+            if (TryAddItem("", item.Icon))
+            {
+                other.GetComponent<ItemBase>().PickUp();
+            }
         }
     }
 }
