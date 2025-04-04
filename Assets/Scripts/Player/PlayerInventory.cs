@@ -74,4 +74,12 @@ public class PlayerInventory : MonoBehaviour
         Cursor.visible = value;
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            other.GetComponent<ItemBase>().PickUp();
+        }
+    }
 }
