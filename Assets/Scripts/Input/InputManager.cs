@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        // Set desired initial cursor visibility and state
+        // Set desired initial cursor visibility
         ShowCursor(cursorVisible);
     }
 

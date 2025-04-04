@@ -112,6 +112,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnFootstep(AnimationEvent animEvent)
     {
-
+        // Play sound
     }
 }

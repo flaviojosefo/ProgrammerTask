@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
         PauseGame();
     }
 
-    // Handles input pausing
+    // Handles pausing
     private void PauseGame()
     {
         if (input.PauseGame && !_paused)
@@ -41,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Handles resuming gameplay
     public void ResumeGame()
     {
         usedItemsMenu.SetActive(true);

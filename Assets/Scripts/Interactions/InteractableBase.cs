@@ -8,18 +8,15 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     [SerializeField] private float timeToInteractable = 2f;
     [SerializeField] private GameObject prompt;
 
-    protected bool _isInteractable = true;
+    // Indicates when the interactable is available
+    public bool IsInteractable { get; protected set; } = true;
+
     public abstract void Interact();
 
-    public void ShowPrompt()
+    // Displays/hides this interactable's prompt
+    public void ShowPrompt(bool show)
     {
-        if (_isInteractable)
-            prompt.SetActive(true);
-    }
-
-    public void HidePrompt()
-    {
-        prompt.SetActive(false);
+        prompt.SetActive(show);
     }
 
     // Allows an interactable to return to interactable state
@@ -27,6 +24,6 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     {
         yield return new WaitForSeconds(timeToInteractable);
 
-        _isInteractable = true;
+        IsInteractable = true;
     }
 }

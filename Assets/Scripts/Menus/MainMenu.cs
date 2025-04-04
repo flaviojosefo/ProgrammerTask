@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        // Load inventory here
+        SaveManager.Instance.Load();
 
         SceneManager.LoadScene("Game");
     }

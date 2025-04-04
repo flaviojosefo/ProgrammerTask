@@ -20,7 +20,11 @@ public class PlayerInteractionManager : MonoBehaviour
         for (int i = 0; i < interactables.Length; i++)
         {
             // Hacky way to force prompt "shutdown"
-            interactables[i].HidePrompt();
+            interactables[i].ShowPrompt(false);
+
+            // Skip calculations if interactable isn't available
+            if (!interactables[i].IsInteractable)
+                continue;
 
             Vector3 interactablePos = interactables[i].transform.position;
 
@@ -32,7 +36,7 @@ public class PlayerInteractionManager : MonoBehaviour
                 // Detect if player is looking towards the interactable
                 if (Vector3.Dot(mainCamera.forward, camToInteractable) > 0.95f)
                 {
-                    interactables[i].ShowPrompt();
+                    interactables[i].ShowPrompt(true);
 
                     // Interact with the object if the player presses the supplied button
                     if (input.Interact)
