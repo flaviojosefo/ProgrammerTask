@@ -28,17 +28,16 @@ This project aims to showcase my skills as a Unity Developer.
 | Feature                  |        Status        |
 |:-------------------------|:--------------------:|
 | Display Item Details     |  :heavy_check_mark:  |
-| Dynamic & Captivating UI |          :x:         |
+| Dynamic & Captivating UI |  :heavy_check_mark:  |
 
 ### 4. Save and Load System
 
 | Feature                       |        Status        |
 |:------------------------------|:--------------------:|
 | Save Inventory State          |  :heavy_check_mark:  |
-| Load Inventory State          |          :x:         |
-| Ensure Slot-based Persistence |          :x:         |
+| Load Inventory State          |  :heavy_check_mark:  |
+| Ensure Slot-based Persistence |  :heavy_check_mark:  |
 
 ## Extra Features
 
-None.
-For now. :wink:
+None. For now. :wink:
