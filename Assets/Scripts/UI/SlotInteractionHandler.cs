@@ -49,7 +49,7 @@ public class SlotInteractionHandler : MonoBehaviour, IPointerEnterHandler, IPoin
         {
             // Activate the options menu and position by the mouse's location (minus small offset)
             optionsMenu.SetActive(true);
-            optionsMenu.transform.position = eventData.position - new Vector2(-5f, -5f);
+            optionsMenu.transform.position = eventData.position - new Vector2(2f, -2f);
 
             // Fetch option menu's buttons
             Button useButton = optionsMenu.transform.GetChild(0).GetChild(0).GetComponent<Button>();
