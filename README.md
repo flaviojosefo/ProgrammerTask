@@ -18,8 +18,8 @@ This project aims to showcase my skills as a Unity Developer.
 |:---------------------|:--------------------:|
 | Add Items            |  :heavy_check_mark:  |
 | Remove Items         |  :heavy_check_mark:  |
-| Move Items           |          :x:         |
-| Drag & Swap Items    |          :x:         |
+| Move Items           |  :heavy_check_mark:  |
+| Drag & Swap Items    |  :heavy_check_mark:  |
 | Use/Equip Items      |  :heavy_check_mark:  |
 | Slot-based Structure |  :heavy_check_mark:  |
 
