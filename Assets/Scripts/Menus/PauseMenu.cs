@@ -94,6 +94,7 @@ public class PauseMenu : MonoBehaviour
             magnetsUsed = inventory.UsedMagnets,
             playerPosition = playerController.transform.position,
             playerRotation = playerController.transform.rotation,
+            cameraRotation = playerController.CameraRotation,
             itemSlots = inventorySlots
         };
 

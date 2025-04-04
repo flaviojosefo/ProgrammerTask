@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private int _animForwardID;
     private int _animRightID;
 
+    public Vector2 CameraRotation => _cameraRotation;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
         FetchAnimationIDs();
 
-        SetInitiaTransform();
+        SetInitTransforms();
     }
 
     private void Update()
@@ -46,13 +48,14 @@ public class PlayerController : MonoBehaviour
     }
 
     // Sets position and rotation according to any saved data
-    private void SetInitiaTransform()
+    private void SetInitTransforms()
     {
         PlayerData data = SaveManager.Instance.Data;
 
         if (data is not null)
         {
             transform.SetPositionAndRotation(data.playerPosition, data.playerRotation);
+            _cameraRotation = data.cameraRotation;
         }
     }
 
