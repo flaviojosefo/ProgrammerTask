@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Splines;
 using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("Slots Settings")]
     [SerializeField] private Transform[] slots;
+    [SerializeField] private GameObject optionsMenu;
 
     private bool _inventoryOpen = false;
 
@@ -35,6 +37,8 @@ public class PlayerInventory : MonoBehaviour
             ShowCursor(!_inventoryOpen);
 
             _inventoryOpen = !_inventoryOpen;
+
+            optionsMenu.SetActive(false);
 
             input.OpenInventory = false;
         }
@@ -62,9 +66,20 @@ public class PlayerInventory : MonoBehaviour
         return false;
     }
 
-    public void RemoveItem()
+    public void RemoveItem(int index)
     {
+        // Disable Icon
+        GameObject icon = slots[index].GetChild(0).gameObject;
+        icon.GetComponent<Image>().sprite = null;
+        icon.SetActive(false);
 
+        // Disable Tooltip
+        Transform tooltip = slots[index].GetChild(1);
+        tooltip.GetChild(0).GetComponent<TMP_Text>().text = "Name";
+        tooltip.gameObject.SetActive(false);
+
+        // Disable Options Menu
+        optionsMenu.SetActive(false);
     }
 
     public void MoveItem()
@@ -72,9 +87,11 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
-    public void UseItem()
+    public void UseItem(int index)
     {
+        print("USED Item" + index);
 
+        // Do something + RemoveItem(index)!
     }
 
     private void ShowCursor(bool value)
