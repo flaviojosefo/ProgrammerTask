@@ -10,9 +10,11 @@ public class InputManager : MonoBehaviour
     public Vector2 Move { get; private set; }
     public Vector2 Look { get; private set; }
     public bool Interact { get; set; }
+    public bool OpenInventory { get; set; }
 
     private void Start()
     {
+        // Set desired initial cursor visibility and state
         Cursor.visible = cursorVisible;
         Cursor.lockState = lockMode;
     }
@@ -30,5 +32,10 @@ public class InputManager : MonoBehaviour
     public void OnInteract(InputValue value)
     {
         Interact = value.isPressed;
+    }
+
+    public void OnInventory(InputValue value)
+    {
+        OpenInventory = value.isPressed;
     }
 }

@@ -2,13 +2,53 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    void Start()
+    [Header("References")]
+    [SerializeField] private GameObject slotPrefab;
+    [SerializeField] private Transform slotsParent;
+    [SerializeField] private Transform inventoryMenu;
+    [SerializeField] private InputManager input;
+    [SerializeField] private PlayerController playerController;
+
+    [Header("Slots Settings")]
+    [SerializeField] private int slotsAmount = 40;
+
+    private bool _inventoryOpen = false;
+
+    private void Start()
     {
-        
+        GenerateSlots();
     }
 
-    void Update()
+    private void Update()
     {
-        
+        OpenInventory();
+    }
+
+    private void GenerateSlots()
+    {
+        for (int i = 0; i < slotsAmount; i++)
+        {
+            Instantiate(slotPrefab, slotsParent);
+        }
+    }
+
+    private void OpenInventory()
+    {
+        if (input.OpenInventory)
+        {
+            playerController.enabled = _inventoryOpen;
+            inventoryMenu.gameObject.SetActive(!_inventoryOpen);
+            ShowCursor(!_inventoryOpen);
+
+            _inventoryOpen = !_inventoryOpen;
+
+            input.OpenInventory = false;
+        }
+    }
+
+    private void ShowCursor(bool value)
+    {
+        Cursor.visible = value;
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }
