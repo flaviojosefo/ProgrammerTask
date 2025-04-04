@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,8 +5,6 @@ using UnityEngine.UI;
 public class PlayerInventory : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject slotPrefab;
-    [SerializeField] private Transform slotsParent;
     [SerializeField] private Transform inventoryMenu;
     [SerializeField] private InputManager input;
     [SerializeField] private PlayerController playerController;
@@ -20,19 +17,81 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private TMP_Text batteries;
     [SerializeField] private TMP_Text magnets;
 
+    [Header("Items")]
+    [SerializeField] private ItemBase batteryItem;
+    [SerializeField] private ItemBase magnetItem;
+
     private bool _inventoryOpen = false;
 
     public Transform[] Slots => slots;
 
+    // Amount of items consumed
     public int UsedBatteries { get; private set; }
     public int UsedMagnets { get; private set; }
 
+    // Item dragging variables
     public bool StartedDragMove { get; set; } = false;
     public int SwapperIndex { get; set; } = -1;
+
+    private void Start()
+    {
+        SetInitialValues();
+    }
 
     private void Update()
     {
         OpenInventory();
+    }
+
+    // Set initial values according to any saved data
+    private void SetInitialValues()
+    {
+        // Fetch player data
+        PlayerData data = SaveManager.Instance.Data;
+
+        if (data is not null)
+        {
+            // Set used batteries
+            UsedBatteries = data.batteriesUsed;
+            batteries.text = $"{UsedBatteries}";
+
+            // Set used magnets
+            UsedMagnets = data.magnetsUsed;
+            magnets.text = $"{UsedMagnets}";
+
+            // Add items to their respective slots
+            for (int i = 0; i < slots.Length; i++)
+            {
+                // Fetch the icon
+                Image icon = slots[i].GetChild(0).GetComponent<Image>();
+
+                // Fetch the tooltip
+                TMP_Text tooltip = slots[i].GetChild(1).GetComponentInChildren<TMP_Text>();
+
+                // Assign slot icons and tooltips according to type
+                switch (data.itemSlots[i])
+                {
+                    case ItemSlotType.Battery:
+
+                        icon.sprite = batteryItem.Icon;
+                        icon.gameObject.SetActive(true);
+                        tooltip.text = batteryItem.Name;
+
+                        break;
+
+                    case ItemSlotType.Magnet:
+
+                        icon.sprite = magnetItem.Icon;
+                        icon.gameObject.SetActive(true);
+                        tooltip.text = magnetItem.Name;
+
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
     // Opens and closes the inventory

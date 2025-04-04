@@ -17,6 +17,9 @@ public class SaveManager : MonoBehaviour
     private string _saveDirectory;
     private string _saveFile;
 
+    // Data to Save/Load
+    public PlayerData Data { get; private set; }
+
     // Singleton
     private static SaveManager _instance;
     public static SaveManager Instance => _instance;
@@ -64,15 +67,23 @@ public class SaveManager : MonoBehaviour
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(_saveFile, json);
 
+        // Update main data
+        Data = data;
+
         // Debug
         print("Save Successful!");
     }
 
     public void Load()
     {
+        // Double check if the directory & file exist
+        if (SaveFound())
+        {
+            string json = File.ReadAllText(_saveFile);
+            Data = JsonUtility.FromJson<PlayerData>(json);
 
-
-        // Debug
-        print("Save Successful!");
+            // Debug
+            print("Load Successful!");
+        }
     }
 }

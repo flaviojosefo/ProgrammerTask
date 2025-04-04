@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
         _controller = GetComponent<CharacterController>();
 
         FetchAnimationIDs();
+
+        SetInitiaTransform();
     }
 
     private void Update()
@@ -41,6 +43,17 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         RotateCamera();
+    }
+
+    // Sets position and rotation according to any saved data
+    private void SetInitiaTransform()
+    {
+        PlayerData data = SaveManager.Instance.Data;
+
+        if (data is not null)
+        {
+            transform.SetPositionAndRotation(data.playerPosition, data.playerRotation);
+        }
     }
 
     private void Move()

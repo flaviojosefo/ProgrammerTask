@@ -4918,8 +4918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4bf4e5920266e42a318218729ad5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotPrefab: {fileID: 1124470398179736398, guid: 7b711cd0dd0e1d14ba3e8ebf888c4256, type: 3}
-  slotsParent: {fileID: 1167125944}
   inventoryMenu: {fileID: 122724017}
   input: {fileID: 435253231}
   playerController: {fileID: 435253229}
@@ -4967,6 +4965,8 @@ MonoBehaviour:
   optionsMenu: {fileID: 890433393}
   batteries: {fileID: 1645510053}
   magnets: {fileID: 177537747}
+  batteryItem: {fileID: -7283336560366897727, guid: 682ba0cdb5af17b45bec63c7aa28b29a, type: 3}
+  magnetItem: {fileID: -4458586884447324233, guid: 20162c70d1f56944ea91e5b6655594bd, type: 3}
 --- !u!65 &556031528
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ public class PauseMenu : MonoBehaviour
     {
         ItemSlotType[] inventorySlots = new ItemSlotType[inventory.Slots.Length];
 
-        // Convert the main slots into easier to "write" array
+        // Convert the main slots into easier to "interpret" array
         for (int i = 0; i < inventory.Slots.Length; i++)
         {
             // Fetch the icon
