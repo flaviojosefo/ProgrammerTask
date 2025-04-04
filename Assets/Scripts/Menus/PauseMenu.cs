@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject inventoryMenu;
     [SerializeField] private GameObject usedItemsMenu;
+    [SerializeField] private GameObject saveCheckmark;
     [SerializeField] private PlayerInventory inventory;
     [SerializeField] private PlayerController playerController;
 
@@ -46,6 +47,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         usedItemsMenu.SetActive(true);
+        saveCheckmark.SetActive(false);
         pauseMenu.SetActive(false);
         playerController.enabled = true;
         input.ShowCursor(false);
@@ -100,6 +102,9 @@ public class PauseMenu : MonoBehaviour
 
         // Save the supplied data
         SaveManager.Instance.Save(playerData);
+
+        // Report to the user that saving was successful
+        saveCheckmark.SetActive(true);
     }
 
     public void QuitGame()
