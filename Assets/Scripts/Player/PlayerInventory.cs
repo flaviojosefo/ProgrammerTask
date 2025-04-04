@@ -1,6 +1,6 @@
+using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Splines;
 using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
@@ -25,10 +25,8 @@ public class PlayerInventory : MonoBehaviour
     private int _usedBatteries;
     private int _usedMagnets;
 
-    private void Start()
-    {
-        
-    }
+    public bool StartedDragMove { get; set; } = false;
+    public int SwapperIndex { get; set; } = -1;
 
     private void Update()
     {
@@ -89,9 +87,45 @@ public class PlayerInventory : MonoBehaviour
         optionsMenu.SetActive(false);
     }
 
-    public void MoveItem()
+    public void MoveItem(int toIndex)
     {
+        if (SwapperIndex == toIndex)
+            return;
 
+        GameObject fromIcon = slots[SwapperIndex].GetChild(0).gameObject;
+        GameObject toIcon = slots[toIndex].GetChild(0).gameObject;
+
+        Transform fromTooltip = slots[SwapperIndex].GetChild(1);
+        Transform toTooltip = slots[toIndex].GetChild(1);
+
+        // Moving to empty slot
+        if (!toIcon.activeSelf)
+        {
+            // Switch icon to new slot
+            toIcon.GetComponent<Image>().sprite = 
+                fromIcon.GetComponent<Image>().sprite;
+            toIcon.SetActive(true);
+
+            fromIcon.GetComponent<Image>().sprite = null;
+            fromIcon.SetActive(false);
+
+            // Replace tooltip
+            toTooltip.GetChild(0).GetComponent<TMP_Text>().text = 
+                fromTooltip.GetChild(0).GetComponent<TMP_Text>().text;
+            toTooltip.gameObject.SetActive(true);
+            fromTooltip.GetChild(0).GetComponent<TMP_Text>().text = "Name";
+        }
+        // Moving to occupied slot
+        else
+        {
+            // Switch icons
+            (fromIcon.GetComponent<Image>().sprite, toIcon.GetComponent<Image>().sprite) = 
+                (toIcon.GetComponent<Image>().sprite, fromIcon.GetComponent<Image>().sprite);
+
+            // Switch tooltips
+            (fromTooltip.GetChild(0).GetComponent<TMP_Text>().text, toTooltip.GetChild(0).GetComponent<TMP_Text>().text) =
+                (toTooltip.GetChild(0).GetComponent<TMP_Text>().text, fromTooltip.GetChild(0).GetComponent<TMP_Text>().text);
+        }
     }
 
     public void UseItem(bool isBattery)
