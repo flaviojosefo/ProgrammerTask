@@ -16,7 +16,7 @@ This project aims to showcase my skills as a Unity Developer.
 
 | Feature              |        Status        |
 |:---------------------|:--------------------:|
-| Add Items            |          :x:         |
+| Add Items            |  :heavy_check_mark:  |
 | Remove Items         |          :x:         |
 | Move Items           |          :x:         |
 | Drag & Swap Items    |          :x:         |
