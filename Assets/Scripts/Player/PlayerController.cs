@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             targetDirection = (forward * inputDirection.z) + (right * inputDirection.x);
 
-            Vector3 targetRotation = (forward * Mathf.Abs(inputDirection.z)) + (forward * Mathf.Abs(inputDirection.x));
+            Vector3 targetRotation = forward * (Mathf.Abs(inputDirection.z) + Mathf.Abs(inputDirection.x));
 
             // Rotate the player
             transform.rotation = Quaternion.Slerp(transform.rotation,
