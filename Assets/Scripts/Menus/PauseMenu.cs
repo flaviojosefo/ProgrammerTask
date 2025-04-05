@@ -25,6 +25,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (input.PauseGame && !_paused)
         {
+            print("what");
             _paused = true;
 
             playerController.enabled = false;
@@ -39,8 +40,9 @@ public class PauseMenu : MonoBehaviour
             }
 
             inventory.enabled = false;
-            input.PauseGame = false;
         }
+
+        input.PauseGame = false;
     }
 
     // Handles resuming gameplay
@@ -49,8 +51,9 @@ public class PauseMenu : MonoBehaviour
         usedItemsMenu.SetActive(true);
         saveCheckmark.SetActive(false);
         pauseMenu.SetActive(false);
-        playerController.enabled = true;
         input.ShowCursor(false);
+
+        playerController.enabled = true;
 
         inventory.enabled = true;
 
