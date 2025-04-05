@@ -31,7 +31,7 @@ public class CheckmarkDimmer : MonoBehaviour
         {
             _image.color = Color.Lerp(start, end, t);
 
-            t += Time.deltaTime / timeToTransparent;
+            t += Time.unscaledDeltaTime / timeToTransparent;
             yield return new WaitForEndOfFrame();
         }
 
