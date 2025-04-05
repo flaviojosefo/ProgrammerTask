@@ -25,7 +25,6 @@ public class PauseMenu : MonoBehaviour
     {
         if (input.PauseGame && !_paused)
         {
-            print("what");
             _paused = true;
 
             playerController.enabled = false;
@@ -40,6 +39,8 @@ public class PauseMenu : MonoBehaviour
             }
 
             inventory.enabled = false;
+
+            Time.timeScale = 0f;
         }
 
         input.PauseGame = false;
@@ -56,6 +57,8 @@ public class PauseMenu : MonoBehaviour
         playerController.enabled = true;
 
         inventory.enabled = true;
+
+        Time.timeScale = 1f;
 
         _paused = false;
     }
@@ -112,6 +115,8 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        Time.timeScale = 1f;
+
         // Go back to the main menu
         SceneManager.LoadScene("MainMenu");
     }
