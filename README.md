@@ -40,4 +40,7 @@ This project aims to showcase my skills as a Unity Developer.
 
 ## Extra Features
 
-None. For now. :wink:
+- Save/Load player-related content
+	- Position & Rotation
+	- Camera angle
+	- Items consumed
