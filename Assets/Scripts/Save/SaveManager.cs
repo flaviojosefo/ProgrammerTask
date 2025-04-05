@@ -38,14 +38,17 @@ public class SaveManager : MonoBehaviour
 
         // Maintain through Scene loads
         DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {
         // Setup pertinent paths
         _saveFileWithExtension = $"{saveName}.json";
         _saveDirectory = Path.Combine(_myGames, saveDirectory);
         _saveFile = Path.Combine(_saveDirectory, _saveFileWithExtension);
+    }
+
+    // Used when wanting to play a new game
+    public void ResetData()
+    {
+        Data = null;
     }
 
     public bool SaveFound()
